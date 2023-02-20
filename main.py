@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 from typing import List, Optional
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from faker import Faker
 from pydantic import BaseModel, Field
 
@@ -45,7 +45,10 @@ class User(BaseModel):
 
 @app.get('/users/{user_id}', response_model=List[User])
 def get_user(user_id: int):
-    return [user for user in fake_users if user.get('id') == user_id]
+    response = [user for user in fake_users if user.get('id') == user_id]
+    if not response:
+        raise HTTPException(status_code=404, detail='User not found')
+    return response
 
 
 fake_users2 = []
