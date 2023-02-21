@@ -1,7 +1,7 @@
 """Database creation
 
 Revision ID: 6c12b2e32f6b
-Revises: 
+Revises:
 Create Date: 2023-02-20 21:26:42.462317
 
 """
